@@ -1,0 +1,350 @@
+/* CampusRecover responsive UI refinements — loaded after page styles */
+:root {
+  --ui-primary: #4f46e5;
+  --ui-primary-dark: #3730a3;
+  --ui-border: #e5e7eb;
+  --ui-muted: #64748b;
+  --ui-surface: #ffffff;
+  --ui-page: #f7f8fc;
+}
+*, *::before, *::after { box-sizing: border-box; }
+html { width:100%; min-height:100%; overflow-x:hidden; scroll-behavior:smooth; }
+body {
+  margin:0; width:100%; max-width:100%; min-height:100vh;
+  color:#111827; background:var(--ui-page);
+  overflow-x:hidden; padding-bottom:100px;
+}
+img, video, canvas, svg { max-width:100%; }
+img { height:auto; }
+button, input, select, textarea { font:inherit; max-width:100%; }
+button, a, input, select, textarea { -webkit-tap-highlight-color:transparent; }
+button, input[type="submit"], input[type="button"] { cursor:pointer; }
+input, select, textarea { min-width:0; }
+textarea { resize:vertical; }
+a { overflow-wrap:anywhere; }
+.portal-header, .navbar {
+  width:100%; min-height:72px; padding:12px clamp(16px,5vw,72px);
+  display:flex; align-items:center; justify-content:space-between; gap:16px;
+  background:#fff; border-bottom:1px solid var(--ui-border);
+  box-shadow:0 2px 10px rgba(15,23,42,.05); position:relative; z-index:5;
+}
+.portal-header .portal-logo { flex:0 0 auto; }
+.portal-header h1, .portal-header h2 { overflow-wrap:anywhere; }
+.portal-header nav, .navbar nav { display:flex; flex-wrap:wrap; align-items:center; gap:12px; }
+main, .dashboard-main, .analytics-main, .reports-main, .admin-main,
+.security-main, .search-main, .notifications-main, .report-container,
+.receive-container, .verify-container, .handover-container, .claims-container,
+.analytics-container, .reports-container, .dashboard-container, .auth-container {
+  width:min(100% - 32px, 1320px); margin-inline:auto; min-width:0;
+}
+.analytics-header, .reports-header, .dashboard-header, .security-header,
+.receive-header, .verify-header, .handover-header, .claims-header,
+.search-header, .notifications-header {
+  width:min(100% - 32px,1320px); margin:26px auto 24px;
+  padding:clamp(22px,3vw,36px); border-radius:18px; min-width:0;
+  overflow-wrap:anywhere;
+}
+.analytics-header { background:linear-gradient(135deg,#4f46e5,#6366f1); color:#fff; }
+.analytics-header h1, .analytics-header p { color:#fff; }
+.analytics-cards, .report-summary, .dashboard-cards, .security-cards,
+.student-stats, .user-summary, .claim-summary {
+  display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:18px;
+}
+.analytics-card, .report-card, .dashboard-card, .security-card, .stat-card,
+.user-summary-card, .summary-card, .quick-action-card, .action-card,
+.analytics-section, .reports-section, .users-section, .claims-section,
+.search-card, .report-card, .receive-card, .activity-card {
+  min-width:0; max-width:100%; overflow-wrap:anywhere;
+}
+.analytics-card, .report-card, .dashboard-card, .security-card, .stat-card,
+.user-summary-card, .summary-card {
+  align-items:center;
+}
+.analytics-card h3, .report-card h3, .dashboard-card h3, .stat-number,
+.summary-card h3 { overflow-wrap:anywhere; }
+.analytics-section, .reports-section, .users-section, .claims-section,
+.quick-actions-section, .activity-section, .search-card, .receive-card,
+.items-section, .claims-section, .notifications-card {
+  width:100%; min-width:0; padding:clamp(16px,2.4vw,28px);
+  border-radius:16px; background:#fff; border:1px solid #edf0f5;
+  box-shadow:0 5px 20px rgba(15,23,42,.045); margin-bottom:22px;
+}
+.statistics-grid, .user-statistics { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:18px; }
+.claim-statistics { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:16px; }
+.stat-box, .user-stat-box, .claim-stat { min-width:0; }
+.report-filters, .user-filters, .search-filters, .handover-tools, .verify-tools {
+  min-width:0; display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:14px;
+}
+.filter-group, .input-group, .form-group { min-width:0; }
+.filter-group input, .filter-group select, .filter-group textarea,
+.input-group input, .input-group select, .input-group textarea,
+.form-group input, .form-group select, .form-group textarea,
+.search-input-row input, .search-box input, .filter-box select {
+  display:block; width:100%; min-width:0; max-width:100%; min-height:44px;
+  padding:10px 12px; border:1px solid #d1d5db; border-radius:9px;
+  background:#fff; color:#111827;
+}
+input:focus, select:focus, textarea:focus {
+  outline:2px solid rgba(79,70,229,.18); outline-offset:1px; border-color:var(--ui-primary);
+}
+.reports-table-container, .table-container, .users-table-container,
+.table-responsive { width:100%; max-width:100%; overflow-x:auto; overscroll-behavior-x:contain; }
+.reports-table, table { width:100%; border-collapse:collapse; }
+.reports-table { min-width:760px; }
+table th, table td { overflow-wrap:anywhere; }
+button, .btn, .auth-btn, .add-user-btn, .view-report-btn {
+  max-width:100%; overflow-wrap:anywhere;
+}
+.modal, .report-modal, .item-modal, .handover-modal {
+  padding:16px; overflow:auto; max-width:100vw; max-height:100dvh;
+}
+.modal-content, .report-modal-content, .item-modal-content, .handover-modal-content {
+  width:min(100%,650px); max-width:100%; max-height:calc(100dvh - 32px);
+  overflow:auto; margin:auto;
+}
+.bottom-nav, .bottom-navigation {
+  position:fixed; left:0; right:0; bottom:0; width:100%; max-width:100%;
+  display:flex; align-items:center; justify-content:space-around; gap:4px;
+  padding:6px max(8px,env(safe-area-inset-left)) calc(6px + env(safe-area-inset-bottom));
+  min-height:72px; height:auto; background:#fff; border-top:1px solid var(--ui-border);
+  box-shadow:0 -3px 15px rgba(15,23,42,.08); z-index:9999;
+}
+.bottom-nav .nav-item, .bottom-nav-item {
+  flex:1 1 0; min-width:0; max-width:180px; padding:7px 5px;
+  display:flex; flex-direction:column; align-items:center; justify-content:center;
+  gap:4px; text-align:center; overflow-wrap:anywhere;
+}
+.bottom-nav-icon { font-size:22px; line-height:1.1; }
+.bottom-nav-text, .nav-item span { font-size:12px; line-height:1.2; }
+.auth-container { min-height:calc(100vh - 32px); display:flex; align-items:center; justify-content:center; padding:24px 0; }
+.auth-card { width:min(100%,480px); min-width:0; margin:auto; }
+.quick-actions, .quick-action-container { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:16px; }
+.quick-action-card, .action-card { display:flex; align-items:center; gap:14px; }
+.empty-state, .empty-results, .empty-notifications, .empty-reports, .no-claims { max-width:100%; overflow-wrap:anywhere; }
+@media (max-width:1100px) {
+  .analytics-cards, .report-summary, .dashboard-cards, .security-cards,
+  .student-stats, .user-summary, .claim-summary { grid-template-columns:repeat(2,minmax(0,1fr)); }
+  .statistics-grid, .user-statistics { grid-template-columns:repeat(2,minmax(0,1fr)); }
+  .claim-statistics { grid-template-columns:repeat(2,minmax(0,1fr)); }
+  .report-filters, .user-filters, .search-filters { grid-template-columns:repeat(2,minmax(0,1fr)); }
+}
+@media (max-width:650px) {
+  body { padding-bottom:88px; }
+  .portal-header, .navbar { min-height:62px; padding:10px 14px; gap:10px; flex-wrap:wrap; }
+  .portal-header h1 { font-size:clamp(16px,4vw,20px); white-space:normal; }
+  .portal-logo { width:40px; height:40px; font-size:21px; }
+  .portal-header nav, .navbar nav { width:100%; gap:8px; justify-content:center; }
+  main, .dashboard-main, .analytics-main, .reports-main, .admin-main,
+  .security-main, .search-main, .notifications-main, .report-container,
+  .receive-container, .verify-container, .handover-container, .claims-container,
+  .analytics-container, .reports-container, .dashboard-container, .auth-container {
+    width:calc(100% - 24px); max-width:none;
+  }
+  .analytics-header, .reports-header, .dashboard-header, .security-header,
+  .receive-header, .verify-header, .handover-header, .claims-header,
+  .search-header, .notifications-header {
+    width:calc(100% - 24px); margin:16px auto; padding:20px; border-radius:14px;
+  }
+  .analytics-header h1, .reports-header h1, .dashboard-header h1 { font-size:clamp(23px,6vw,30px); }
+  .analytics-cards, .report-summary, .dashboard-cards, .security-cards,
+  .student-stats, .user-summary, .claim-summary,
+  .statistics-grid, .user-statistics, .claim-statistics,
+  .quick-actions, .quick-action-container { grid-template-columns:minmax(0,1fr); }
+  .report-filters, .user-filters, .search-filters { grid-template-columns:minmax(0,1fr); padding:14px; }
+  .analytics-section, .reports-section, .users-section, .claims-section,
+  .quick-actions-section, .activity-section, .search-card, .receive-card,
+  .items-section, .notifications-card { padding:16px; border-radius:13px; }
+  .category-item { grid-template-columns:minmax(70px,100px) minmax(0,1fr) 30px; gap:8px; }
+  .bottom-nav, .bottom-navigation { min-height:64px; }
+  .bottom-nav .nav-item, .bottom-nav-item { padding:5px 2px; gap:3px; }
+  .bottom-nav-icon { font-size:19px; }
+  .bottom-nav-text, .nav-item span { font-size:10px; }
+}
+@media (max-width:380px) {
+  .bottom-nav-text, .nav-item span { font-size:9px; }
+  .portal-header h1 { font-size:15px; }
+  .claim-stat, .analytics-card, .report-card, .dashboard-card { gap:10px; padding:14px; }
+}
+
+
+/* Final consistency pass: shared header, card sizing, and responsive overflow */
+.portal-header {
+  display: flex !important;
+  flex-direction: row !important;
+  flex-wrap: nowrap !important;
+  align-items: center !important;
+  justify-content: flex-start !important;
+  gap: 14px !important;
+  min-height: 76px;
+  padding: 12px clamp(16px, 5vw, 72px) !important;
+  box-sizing: border-box;
+}
+.portal-header .portal-logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 48px !important;
+  width: 48px;
+  height: 48px;
+  margin: 0 !important;
+  border-radius: 12px;
+  background: #eef2ff;
+  font-size: 25px;
+}
+.portal-brand {
+  display: flex;
+  flex: 1 1 auto;
+  align-items: flex-start;
+  justify-content: center;
+  min-width: 0;
+}
+.portal-header .portal-brand h1 {
+  margin: 0 !important;
+  padding: 0;
+  color: #4f46e5 !important;
+  font-size: clamp(17px, 2vw, 22px);
+  font-weight: 700;
+  line-height: 1.3;
+  white-space: normal;
+  overflow-wrap: anywhere;
+}
+.analytics-header {
+  background: linear-gradient(135deg, #3730a3, #4f46e5, #6366f1);
+}
+.analytics-header h1, .analytics-header p { color: #fff; }
+.analytics-cards, .report-summary, .dashboard-cards, .security-cards,
+.student-stats, .user-summary, .claim-summary { align-items: stretch; }
+.analytics-card, .report-card, .dashboard-card, .security-card,
+.stat-card, .user-summary-card, .summary-card { min-width: 0; height: 100%; }
+.analytics-card > *, .report-card > *, .dashboard-card > *,
+.security-card > *, .stat-card > * { min-width: 0; overflow-wrap: anywhere; }
+@media (max-width: 650px) {
+  .portal-header { min-height: 64px; padding: 10px 14px !important; gap: 10px !important; }
+  .portal-header .portal-logo { flex-basis: 40px !important; width: 40px; height: 40px; font-size: 21px; }
+  .portal-header .portal-brand h1 { font-size: clamp(15px, 4.3vw, 18px); }
+}
+
+
+/* Requested final styling: left-aligned branding and dashboard-matched analytics */
+.portal-header {
+  justify-content: flex-start !important;
+  text-align: left !important;
+}
+.portal-header .portal-brand {
+  flex: 0 1 auto !important;
+  justify-content: flex-start !important;
+  align-items: flex-start !important;
+  text-align: left !important;
+  margin: 0 !important;
+}
+.portal-header .portal-brand h1 { text-align: left !important; }
+.analytics-header {
+  background: linear-gradient(135deg, #2563eb, #3b82f6) !important;
+  color: #fff !important;
+  box-shadow: 0 10px 25px rgba(37, 99, 235, .20) !important;
+}
+.analytics-header h1, .analytics-header p { color: #fff !important; }
+.analytics-card {
+  background: #fff !important;
+  color: #111827 !important;
+  border: 1px solid #e5e7eb !important;
+  border-radius: 14px !important;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, .05) !important;
+}
+.analytics-card h3, .analytics-card .analytics-number { color: #2563eb !important; }
+.analytics-section {
+  background: #fff !important;
+  border: 1px solid #e5e7eb !important;
+}
+
+
+/* Student dashboard bottom navigation: larger, readable and touch-friendly */
+body:has(.dashboard-main) .bottom-nav {
+  min-height: 86px;
+  padding: 10px max(12px, env(safe-area-inset-left)) calc(10px + env(safe-area-inset-bottom));
+  gap: 8px;
+}
+body:has(.dashboard-main) .bottom-nav .nav-item {
+  min-height: 64px;
+  padding: 8px 10px;
+  gap: 6px;
+  border-radius: 12px;
+}
+body:has(.dashboard-main) .bottom-nav .nav-item span:first-child {
+  font-size: 25px;
+  line-height: 1.15;
+}
+body:has(.dashboard-main) .bottom-nav .nav-item span:last-child {
+  font-size: 13px;
+  line-height: 1.25;
+  font-weight: 600;
+}
+@media (max-width: 650px) {
+  body:has(.dashboard-main) { padding-bottom: 104px; }
+  body:has(.dashboard-main) .bottom-nav { min-height: 82px; gap: 2px; }
+  body:has(.dashboard-main) .bottom-nav .nav-item { padding: 8px 3px; gap: 5px; }
+  body:has(.dashboard-main) .bottom-nav .nav-item span:first-child { font-size: 23px; }
+  body:has(.dashboard-main) .bottom-nav .nav-item span:last-child { font-size: 12px; }
+}
+@media (max-width: 380px) {
+  body:has(.dashboard-main) .bottom-nav .nav-item span:last-child { font-size: 11px; }
+}
+
+/* Explicitly match Staff Dashboard boxes to the Receive Found Item card style.
+   These high-specificity rules override older page CSS loaded before ui-fixes.css. */
+body .security-main .security-cards .security-card {
+  background: #ffffff !important;
+  border: 1px solid #e5e7eb !important;
+  border-radius: 16px !important;
+  box-shadow: 0 5px 20px rgba(15, 23, 42, 0.045) !important;
+  padding: 24px !important;
+  min-height: 118px !important;
+  height: 100% !important;
+  box-sizing: border-box !important;
+}
+body .security-main .quick-actions .action-card {
+  background: #ffffff !important;
+  border: 1px solid #e5e7eb !important;
+  border-radius: 16px !important;
+  box-shadow: 0 5px 20px rgba(15, 23, 42, 0.045) !important;
+  padding: 24px !important;
+  min-height: 132px !important;
+  height: 100% !important;
+  box-sizing: border-box !important;
+  color: #1f2937 !important;
+}
+body .security-main .quick-actions .action-card:hover {
+  background: #f8fafc !important;
+  border-color: #cbd5e1 !important;
+  box-shadow: 0 7px 22px rgba(15, 23, 42, 0.08) !important;
+}
+body .security-main .security-card-icon,
+body .security-main .action-icon {
+  background: #eef2ff !important;
+  border-radius: 12px !important;
+  flex-shrink: 0 !important;
+}
+body .security-main .security-card h3,
+body .security-main .action-card h3 { color: #1f2937 !important; }
+body .security-main .security-card p,
+body .security-main .action-card p { color: #64748b !important; }
+@media (max-width: 700px) {
+  body .security-main .security-cards .security-card,
+  body .security-main .quick-actions .action-card {
+    padding: 18px !important;
+    min-height: 110px !important;
+  }
+}
+
+/* Staff Dashboard: replace the purple Security Dashboard banner with the same blue as Receive Found Item. */
+body .security-main > .security-header {
+  background: linear-gradient(135deg, #2563eb, #3b82f6) !important;
+  color: #ffffff !important;
+  box-shadow: 0 8px 20px rgba(37, 99, 235, 0.20) !important;
+}
+body .security-main > .security-header h1,
+body .security-main > .security-header p,
+body .security-main > .security-header strong,
+body .security-main > .security-header span {
+  color: #ffffff !important;
+}
